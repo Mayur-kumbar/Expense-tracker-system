@@ -9,7 +9,7 @@ import { MdDelete } from "react-icons/md";
 
 const ViewCategoryExpenseModal = ({ show, onclose, expense }) => {
 
-    const {deleteExpenseItem} = useContext(expenseContext)
+    const {deleteExpenseItem , deleteExpenseCategory} = useContext(expenseContext)
 
     const deleteItemHandler = async (item) => {
         try {
@@ -26,11 +26,20 @@ const ViewCategoryExpenseModal = ({ show, onclose, expense }) => {
         }
     }
 
+    const deleteCategoryHandler = async () => {
+        try {
+            await deleteExpenseCategory(expense.id)
+        } catch (error) {
+            console.log(error.message);
+            
+        }
+    }
+
     return (
         <Model show={show} onclose={onclose}>
             <div className='flex justify-between items-center '>
                 <h3 className='text-2xl'>{expense.title}</h3>
-                <button className='text-sm border-0 h-10 bg-red-500 p-2 rounded-lg hover:bg-red-800'>Delete</button>
+                <button onClick={() => deleteCategoryHandler()} className='text-sm border-0 h-10 bg-red-500 p-2 rounded-lg hover:bg-red-800'>Delete</button>
             </div>
 
             <div>
