@@ -2,6 +2,7 @@
 
 import { useState ,useContext ,  useEffect} from "react";
 import { expenseContext } from "@/lib/store/Expense-context";
+import { authContext } from "@/lib/store/Auth-context";
 
 import { currencyFormatter } from "@/lib/utils";
 
@@ -11,6 +12,7 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import ExpenseCategory from "./components/expenseCategory";
 import AddIncomeModal from "./components/Modals/AddIncomeModal";
 import AddExpensesModal from "./components/Modals/AddExpensesModal";
+import SignIn from "./components/SignIn";
 
 
 ChartJS.register(ArcElement, Tooltip, Legend);
@@ -23,6 +25,7 @@ export default function Home() {
   const [Balence, setBalence] = useState(0)
 
   const {expenses , income} = useContext(expenseContext)
+  const {user , loading} = useContext(authContext)
 
   useEffect(() => {
     const newBalence = income.reduce((total, i) => {
@@ -37,6 +40,10 @@ export default function Home() {
   
   }, [expenses , income])
   
+
+  if(!user){
+    return <SignIn/>
+  }
 
   return (
     <>

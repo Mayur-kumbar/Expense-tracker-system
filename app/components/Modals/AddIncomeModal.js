@@ -1,7 +1,8 @@
 import React from 'react'
-import { useRef , useEffect , useContext} from 'react'
+import { useRef , useContext} from 'react'
 
 import {expenseContext} from '@/lib/store/Expense-context'
+import { authContext } from '@/lib/store/Auth-context'
 
 import { currencyFormatter } from '@/lib/utils'
 
@@ -15,6 +16,8 @@ const AddIncomeModal = ({show , onclose }) => {
   const descriptionRef = useRef()
   const {income , addIncomeItem , removeIncomeItem} = useContext(expenseContext)
 
+  const {user} = useContext(authContext)
+
   const addIncomeHandler = async (e) => {
     e.preventDefault();
 
@@ -22,6 +25,7 @@ const AddIncomeModal = ({show , onclose }) => {
       amount: +amountRef.current.value,
       description: descriptionRef.current.value,
       createdAt: new Date(),
+      uid : user.uid,
     }
 
     try {

@@ -5,6 +5,7 @@ import "./globals.css";
 import Navbar from "./components/Navbar";
 
 import ExpenseContextProvider from "@/lib/store/Expense-context";
+import AuthContextProvider from "@/lib/store/Auth-context";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -24,10 +25,12 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ExpenseContextProvider>
-          <Navbar />
-          {children}
-        </ExpenseContextProvider>
+        <AuthContextProvider>
+          <ExpenseContextProvider>
+            <Navbar />
+            {children}
+          </ExpenseContextProvider>
+        </AuthContextProvider>
       </body>
     </html>
   );
