@@ -4,6 +4,10 @@
 
 
 @layer base{
+  html{
+    scroll-behavior: smooth;
+  }
+  
   body{
     @apply bg-gray-800 text-white relative; 
   }

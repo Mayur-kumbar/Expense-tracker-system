@@ -74,6 +74,7 @@ export default function Home() {
 
         <section className="flex w-full justify-center">
           <div className="w-full sm:w-[50%] p-4 ">
+            <a id="stats"/>
             <h3 className="font-bold">Stats</h3>
             <div className="w-full sm:w-[60%] md:w-[50%] lg:w-[40%] mx-auto">
               <Doughnut data={{
