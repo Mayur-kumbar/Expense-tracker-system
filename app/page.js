@@ -25,7 +25,7 @@ export default function Home() {
   const [Balence, setBalence] = useState(0)
 
   const {expenses , income} = useContext(expenseContext)
-  const {user , loading} = useContext(authContext)
+  const {user} = useContext(authContext)
 
   useEffect(() => {
     const newBalence = income.reduce((total, i) => {
