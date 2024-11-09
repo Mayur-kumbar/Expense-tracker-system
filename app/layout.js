@@ -22,6 +22,10 @@ const geistMono = localFont({
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        <title>Expense Tracker</title>
+        <meta name="description" content="This is a Expense Tracker system."/>
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
