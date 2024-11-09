@@ -3,7 +3,7 @@ import { currencyFormatter } from '@/lib/utils'
 import { useState } from 'react'
 import ViewCategoryExpenseModal from './Modals/ViewCategoryExpenseModal'
 
-const expenseCategory = ({ expense }) => {
+const ExpenseCategory = ({ expense }) => {
     const [showCategoryModal, setshowCategoryModal] = useState(false)
     return (
         <>
@@ -21,4 +21,4 @@ const expenseCategory = ({ expense }) => {
     )
 }
 
-export default expenseCategory
+export default ExpenseCategory
