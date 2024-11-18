@@ -9,7 +9,7 @@ import { currencyFormatter } from "@/lib/utils";
 import { Doughnut } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 
-import ExpenseCategory from "./components/expenseCategory";
+import ExpenseCategory from "./components/ExpenseCategory";
 import AddIncomeModal from "./components/Modals/AddIncomeModal";
 import AddExpensesModal from "./components/Modals/AddExpensesModal";
 import SignIn from "./components/SignIn";
