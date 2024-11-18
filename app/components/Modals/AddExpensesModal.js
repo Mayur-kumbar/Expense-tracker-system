@@ -1,6 +1,6 @@
 import React from 'react'
 import Model from '../Model'
-import { useState, useContext ,useRef } from 'react'
+import { useState, useContext, useRef } from 'react'
 import { expenseContext } from '@/lib/store/Expense-context'
 
 import { v4 as uuidv4 } from 'uuid'
@@ -11,7 +11,7 @@ const AddExpensesModal = ({ show, onclose }) => {
     const [selectedCategory, setselectedCategory] = useState(null)
     const [showNewCategory, setshowNewCategory] = useState(false)
 
-    const { expenses, addExpenseItem , addCategory } = useContext(expenseContext)
+    const { expenses, addExpenseItem, addCategory } = useContext(expenseContext)
 
     const titleRef = useRef()
     const colorRef = useRef()
@@ -54,7 +54,7 @@ const AddExpensesModal = ({ show, onclose }) => {
         const color = colorRef.current.value
 
         try {
-            await addCategory({title , color , total : 0})
+            await addCategory({ title, color, total: 0 })
         } catch (error) {
             console.log(error.message);
         }
@@ -77,16 +77,38 @@ const AddExpensesModal = ({ show, onclose }) => {
                     </div>
 
                     {showNewCategory && (
-                        <div className='flex gap-2 items-center'>
-                        <input className="py-1 px-3 rounded-xl bg-slate-600" type="text" placeholder='Enter title' ref={titleRef}/>
-                        <label htmlFor="color">Pick Color</label>
-                        <input className='cursor-pointer' type="color" ref={colorRef} />
-                        <button onClick={addCategoryHandler} className="text-sm rounded-lg text-green-500 p-3 bg-gray-700 hover:bg-gray-800 m-2 ">Create</button>
-                        <button onClick={() => setshowNewCategory(false)} className="text-sm border-0 h-10 bg-red-500 p-2 rounded-lg hover:bg-red-800">Cancel</button>
-                    </div>
+                        <div className="flex flex-col sm:flex-row gap-4 sm:gap-2 items-center sm:items-start">
+                            <input
+                                className="w-full sm:w-auto py-2 px-4 rounded-xl bg-slate-600 text-white placeholder-gray-400"
+                                type="text"
+                                placeholder="Enter title"
+                                ref={titleRef}
+                            /> 
+                            <div className="flex items-center gap-2 w-full sm:w-auto">
+                                <label htmlFor="color" className="text-sm sm:text-base text-gray-300">Pick Color</label>
+                                <input
+                                    className="cursor-pointer w-10 h-10"
+                                    type="color"
+                                    ref={colorRef}
+                                />
+                            </div> 
+                            <button
+                                onClick={addCategoryHandler}
+                                className="text-sm sm:text-base w-full sm:w-auto rounded-lg text-green-500 px-4 py-2 bg-gray-700 hover:bg-gray-800"
+                            >
+                                Create
+                            </button> 
+                            <button
+                                onClick={() => setshowNewCategory(false)}
+                                className="text-sm sm:text-base w-full sm:w-auto border-0 bg-red-500 px-4 py-2 rounded-lg hover:bg-red-800"
+                            >
+                                Cancel
+                            </button>
+                        </div>
                     )}
 
-                    
+
+
                     {expenses.map(expense => {
                         return (
                             <button key={expense.id} onClick={() => { setselectedCategory(expense.id) }} className=''>
